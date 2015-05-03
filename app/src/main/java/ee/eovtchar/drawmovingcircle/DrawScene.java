@@ -63,11 +63,14 @@ public class DrawScene extends View
         x = x + dx;
         y += dy; // y = y + dy
 
-        if (x>scene_width-circleRadius || x<circleRadius)
-        {
+//        if (x>scene_width-circleRadius || x<circleRadius)
+            if (x>scene_width || x<circleRadius)
+
+            {
             dx = dx * -1;
         }
-        if (y>scene_height-circleRadius || y<circleRadius)
+        //if (y>scene_height-circleRadius || y<circleRadius)
+        if (y>scene_height || y<circleRadius)
         {
             dy = dy * -1;
         }
