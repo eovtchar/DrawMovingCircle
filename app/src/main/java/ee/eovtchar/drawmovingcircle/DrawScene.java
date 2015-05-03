@@ -15,15 +15,17 @@ public class DrawScene extends View
     private Paint canvasPaint;
     private Paint circlePaint;
     private Handler h;
+    private int scene_width;
+    private int scene_height;
 
     private int x = 50;
     private int y = 50;
     private int circleRadius = 50;
     //na skolko warik budet peremewatsja
-    private int dx = 5;
-    private int dy = 5;
+    private int dx = 15;
+    private int dy = 15;
     //final - ozna4aet 4to pomenjat ee v programme ja ne mogy
-    private final int FRAME_RATE = 30;
+    private final int FRAME_RATE = 10;
 
     public DrawScene(Context context, int start_x, int start_y)
     {
@@ -61,15 +63,23 @@ public class DrawScene extends View
         x = x + dx;
         y += dy; // y = y + dy
 
-        if (x > this.getWidth() || x < circleRadius)
+        if (x>scene_width-circleRadius || x<circleRadius)
         {
             dx = dx * -1;
         }
-        if (y > this.getHeight() || y < circleRadius)
+        if (y>scene_height-circleRadius || y<circleRadius)
         {
             dy = dy * -1;
         }
 
         h.postDelayed(r, FRAME_RATE);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh)
+    {
+        super.onSizeChanged(w, h, oldw, oldh);
+        scene_width = this.getWidth();
+        scene_height = this.getHeight();
     }
 }
